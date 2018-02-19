@@ -3,7 +3,7 @@ package org.oscat.oscat.model;
 public class Validator {
 
     ValidationType validationType;
-    ValidationStatus validationStatus;
+    ValidationStatus validationStatus = ValidationStatus.WAITING;
 
     public ValidationType getValidationType() {
         return validationType;
@@ -22,8 +22,7 @@ public class Validator {
     }
 
     public void validate() {
-        // Will be overwritten by subclasses
-
+        // (Will be overwritten by subclasses)
     }
 
 }
