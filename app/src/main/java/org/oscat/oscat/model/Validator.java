@@ -22,8 +22,7 @@ public class Validator {
     }
 
     public void validate() {
-        // Will be overwritten by subclasses
-
+        // (Will be overwritten by subclasses)
     }
 
 }
