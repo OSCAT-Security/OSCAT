@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Currently supported versions of Windows -->
+<version>
+    <name>Windows 10</name>
+    <release_version>10.0</release_version>
+    <edition>Pro</edition>
+    <build>1709</build>
+    <configuration url="configurations/windows/microsoft_windows_10_pro_1709.xml">
+</version>
+<version>
+    <name>Windows 7</name>
+    <release_version>6.1</release_version>
+    <edition>Professional</edition>
+    <build>7601</build>
+</version>

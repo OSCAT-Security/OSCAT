@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apple macOS 10.13.3 -->
+<config id="0">
+    <applicable versions="*" />
+    <name>Firewall: on and configured</name>
+    <description>The firewall blocks all incoming connections.</description>
+    <read>
+        <command>defaults read /Library/Preferences/com.apple.alf globalstate</command>
+        <pass>
+            <value>2</value>
+        </pass>
+    </read>
+    <solution>
+        <fix>sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 2</fix>
+        <location>System Preferences/Security & Privacy/Firewall</location>
+        <justification>Enabling the firewall protects your computer from any malicious or unwanted connections.</justification>
+    </solution>
+</config>
+<config id="1">
+    <applicable versions="*" />
+    <name>Updates: Automatic updates are Enabled</name>
+    <description>Enable automatic updates.</description>
+    <read>
+        <command>sudo defaults read /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired</command>
+        <pass>
+            <value>1</value>
+        </pass>
+    </read>
+    <solution>
+        <fix>sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool TRUE</fix>
+        <location></location>
+        <justification>Enabling automatic updates protects the system from recent vulnerabilities.</justification>
+    </solution>
+</config>
+<config id="2">
+    <applicable versions="*" />
+    <name>Policy: Minimum password length</name>
+    <description>The minimum length of a user password.</description>
+    <read>
+        <command>pwpolicy -getglobalpolicy</command>
+        <pass>
+            <value>minChars=8</value>
+        </pass>
+    </read>
+    <solution>
+        <fix>sudo pwpolicy -a [sudoer] -setglobalpolicy "minChars=8"</fix>
+        <location></location>
+        <justification>Enforcing secure passwords reduces the likelihood of account compromise.</justification>
+    </solution>
+</config>
