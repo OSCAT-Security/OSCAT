@@ -12,6 +12,25 @@
     <name>OSCAT: Open-Source Configuration Assessment Tool</name>
     <url>https://github.com/OSCAT-Security/OSCAT</url>
 
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>net.oscat.oscat.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.xml.parsers/jaxp-api -->
         <dependency>
