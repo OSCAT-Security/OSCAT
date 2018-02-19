@@ -1,4 +1,4 @@
-package net.oscat.oscat;
+package org.oscat.oscat;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package net.oscat.oscat.model;
+package org.oscat.oscat.model;
 
 public enum ValidationStatus {
 

@@ -22,7 +22,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>net.oscat.oscat.Main</mainClass>
+                            <mainClass>org.oscat.oscat.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
