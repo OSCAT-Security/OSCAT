@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Microsoft Windows 10 Pro Build 1709 Configuration -->
+<config id="0">
+    <applicable versions="*" />
+    <name>"Interactive logon: Do not require CTRL+ALT+DEL" set to: DISABLED</name>
+    <description>This security setting determines whether pressing CTRL+ALT+DEL is required before a user can log on.</description>
+    <solution>
+        <fix>Set Disable CTRL+ALT+DEL requirement for logon to Not configured.</fix>
+        <location>Computer Configuration\Windows Settings\Security Settings\Local Policies\Security Options</location>
+        <registry>
+            <location>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogo\</location>
+            <pass>
+                <value>0</value>
+            </pass>
+        </registry>
+        <justification>Having to press CTRL+ALT+DEL leaves users susceptible to attacks that attempt to intercept the users' passwords.</justification>
+    </solution>
+</config>

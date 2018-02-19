@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operating_system>
+    <name>High Sierra</name>
+    <release_version>10.13.3</release_version>
+    <configuration url="configurations/mac/.xml">
+</operating_system>
