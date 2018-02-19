@@ -10,10 +10,5 @@ public class CommandValidator extends Validator {
     boolean requiresPrivileges;
     List<String> acceptedOutputs;
 
-    @Override
-    public void validate() {
-
-    }
-
 
 }
