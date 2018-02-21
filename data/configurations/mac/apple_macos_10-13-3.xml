@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Apple macOS 10.13.3 -->
+
+<!-- Firewall Configuration -->
 <config id="0">
     <applicable versions="*" />
     <name>Firewall: on and configured</name>
@@ -11,14 +13,17 @@
         </pass>
     </read>
     <solution>
+        <!-- Enables the firewall. -1 turns the firewall on. -2 blocks all incoming connections (except for required services like DHCP) -->
         <fix>sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 2</fix>
         <location>System Preferences/Security & Privacy/Firewall</location>
         <justification>Enabling the firewall protects your computer from any malicious or unwanted connections.</justification>
     </solution>
 </config>
+
+<!-- Automatic Updates -->
 <config id="1">
     <applicable versions="*" />
-    <name>Updates: Automatic updates are Enabled</name>
+    <name>Updates: Automatic Updates are Enabled</name>
     <description>Enable automatic updates.</description>
     <read>
         <command>sudo defaults read /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired</command>
@@ -27,14 +32,17 @@
         </pass>
     </read>
     <solution>
+        <!-- Turns on automatic updates for updates that require reboots -->
         <fix>sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool TRUE</fix>
         <location></location>
         <justification>Enabling automatic updates protects the system from recent vulnerabilities.</justification>
     </solution>
 </config>
+
+<!-- Password Min Length -->
 <config id="2">
     <applicable versions="*" />
-    <name>Policy: Minimum password length</name>
+    <name>Policy: Minimum Password Length</name>
     <description>The minimum length of a user password.</description>
     <read>
         <command>pwpolicy -getglobalpolicy</command>
@@ -43,8 +51,48 @@
         </pass>
     </read>
     <solution>
-        <fix>sudo pwpolicy -a [sudoer] -setglobalpolicy "minChars=8"</fix>
-        <location></location>
+        <!-- Set minimum characters to 8 (Which is the recommended number) -->
+        <fix>pwpolicy -setglobalpolicy "minChars=8"</fix>
+        <location>Must be done through Terminal.</location>
         <justification>Enforcing secure passwords reduces the likelihood of account compromise.</justification>
+    </solution>
+</config>
+
+<!-- Password Complexity -->
+<config id="3">
+    <applicable version="*"/>
+    <name>Policy: Enforce Complex Passwords</name>
+    <description>Require users to have passwords with letters and numbers.</description>
+    <read>
+        <command>pwpolicy -getglobalpolicy</command>
+        <pass>
+            <value>requiresNumeric=1</value>
+            <value>requiresAlpha=1</value>
+        </pass>
+    </read>
+    <solution>
+        <!-- Require numbers and letters (Alpha and Numeric) -->
+        <fix>pwpolicy -setglobalpolicy requiresAlpha=1 && pwpolicy -setglobalpolicy requiresNumeric=1</fix>
+        <location>Must be done through Terminal.</location>
+        <justification>Requiring letters and numbers can create a more secure password.</justification>
+    </solution>
+</config>
+
+<!-- Password History -->
+<config id="4">
+    <applicable version="*"/>
+    <name>Policy: Enforce Password History</name>
+    <description>Require users to have different passwords after a password change.</description>
+    <read>
+        <command>pwpolicy -getglobalpolicy</command>
+        <pass>
+            <value>usingHistory=3</value>
+        </pass>
+    </read>
+    <solution>
+        <!-- Remember and disallow past 3 used passwords for that user -->
+        <fix>pwpolicy -setglobalpolicy usingHistory=3</fix>
+        <location>Must be done through Terminal.</location>
+        <justification>Requiring users to change passwords can help prevent a successful attack.</justification>
     </solution>
 </config>
