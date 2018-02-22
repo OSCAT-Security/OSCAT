@@ -17,10 +17,10 @@ PASSWORD POLICIES
     <name>Policy: Enforce Password History</name>
     <description>The Enforce password history policy setting determines the number of unique new passwords that must be associated with a user account before an old password can be reused.</description>
     <read>
-      <command>net accounts</command>
-      <pass>
-        <value>Length of password history maintained\:\s+24</value>
-      </pass>
+        <command>net accounts</command>
+          <pass>
+              <value>Length of password history maintained\:\s+24</value>
+          </pass>
     </read>
     <solution>
         <fix>In Local Security Policy, go to Account Policies, Password Policy, and set Enforce Password History to 24.``</fix>
@@ -35,31 +35,67 @@ PASSWORD POLICIES
     <name>Policy: Maximum password age</name>
     <description>The Maximum password age policy setting determines the period of time that a password can be used before the system requires the user to change it.</description>
     <read>
-      <command>net accounts</command>
-      <pass>
-        <value>Maximum password age \(days\)\:\s+[1-4][0-9]</value>
-      </pass>
+        <command>net accounts</command>
+        <pass>
+            <value>Maximum password age \(days\)\:\s+[1-4][0-9]</value>
+        </pass>
     </read>
     <solution>
-        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the maximum password age equal to or less then 42.</fix>
+        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the maximum password age equal to or less than 42.</fix>
         <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
         <justification>An attacker has a limited amount of time in which to compromise a user's password and have access to your network resources if user passwords rotate often.</justification>
     </solution>
 </config>
 
 <!-- Minimum Password Age -->
-<config id="1">
+<config id="2">
     <applicable versions="*" />
     <name>Policy: Minimum password age</name>
     <description>The Minimum password age policy setting determines the period of time (in days) that a password can be used before the system requires the user to change it.</description>
     <read>
       <command>net accounts</command>
-      <pass>
-        <value>Minimum password age \(days\)\:\s+2</value>
-      </pass>
+        <pass>
+            <value>Minimum password age \(days\)\:\s+2</value>
+        </pass>
     </read>
     <solution>
         <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the minimum password age equal to 2.</fix>
+        <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
+        <justification>Set Minimum password age to a value of 2 days. Setting the number of days to 0 allows immediate password changes, which is not recommended.</justification>
+    </solution>
+</config>
+
+<!-- Minimum Password Length -->
+<config id="3">
+    <applicable versions="*" />
+    <name>Policy: Minimum password length</name>
+    <description>The Minimum password length policy setting determines the least number of characters that can make up a password for a user account.</description>
+    <read>
+        <command>net accounts</command>
+        <pass>
+            <value>Minimum password length\:\s+8</value>
+        </pass>
+    </read>
+    <solution>
+        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the minimum password length equal to or greater than 8.</fix>
+        <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
+        <justification>Set Minimum password age to a value of 2 days. Setting the number of days to 0 allows immediate password changes, which is not recommended.</justification>
+    </solution>
+</config>
+
+<!-- Password must meet complexity requirements -->
+<config id="3">
+    <applicable versions="*" />
+    <name>Policy: Password must meet complexity requirements</name>
+    <description>The Minimum password length policy setting determines the least number of characters that can make up a password for a user account.</description>
+    <read>
+        <command>net accounts</command>
+        <pass>
+            <value>Minimum password length\:\s+8</value>
+        </pass>
+    </read>
+    <solution>
+        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the minimum password length equal to or greater than 8.</fix>
         <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
         <justification>Set Minimum password age to a value of 2 days. Setting the number of days to 0 allows immediate password changes, which is not recommended.</justification>
     </solution>
