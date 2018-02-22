@@ -11,44 +11,56 @@ PASSWORD POLICIES
 *
 -->
 
-<!-- Password History REVISIT, REGISTRY
+<!-- Password History  -->
 <config id="0">
     <applicable versions="*" />
     <name>Policy: Enforce Password History</name>
     <description>The Enforce password history policy setting determines the number of unique new passwords that must be associated with a user account before an old password can be reused.</description>
     <read>
-        <registry>
-            <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
-            <pass>
-                <value>0</value>
-            </pass>
-        </registry>
+      <command>net accounts</command>
+      <pass>
+        <value>Length of password history maintained\:\s+24</value>
+      </pass>
     </read>
     <solution>
-        <fix>Set Disable CTRL+ALT+DEL requirement for logon to Not configured.</fix>
+        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set Enforce Password History to 24.``</fix>
         <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
-        <justification>Having to press CTRL+ALT+DEL leaves users susceptible to attacks that attempt to intercept the users' passwords.</justification>
+        <justification>This will help mitigate vulnerabilities that are caused by password reuse.</justification>
     </solution>
-</config> -->
+</config>
 
-<!-- Maximum Password Age
-REVISIT, SEE TILLSON ABOUT MANY VALUES.
--->
+<!-- Maximum Password Age -->
 <config id="1">
     <applicable versions="*" />
     <name>Policy: Maximum password age</name>
     <description>The Maximum password age policy setting determines the period of time that a password can be used before the system requires the user to change it.</description>
     <read>
-        <registry>
-            <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
-            <pass>
-                <!-- !!! --> <value>42 or less</value>
-            </pass>
-        </registry>
+      <command>net accounts</command>
+      <pass>
+        <value>Maximum password age \(days\)\:\s+[1-4][0-9]</value>
+      </pass>
     </read>
     <solution>
-        <fix>Set the maximum password age equal to or less then 42.</fix>
+        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the maximum password age equal to or less then 42.</fix>
         <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
         <justification>An attacker has a limited amount of time in which to compromise a user's password and have access to your network resources if user passwords rotate often.</justification>
+    </solution>
+</config>
+
+<!-- Minimum Password Age -->
+<config id="1">
+    <applicable versions="*" />
+    <name>Policy: Minimum password age</name>
+    <description>The Minimum password age policy setting determines the period of time (in days) that a password can be used before the system requires the user to change it.</description>
+    <read>
+      <command>net accounts</command>
+      <pass>
+        <value>Minimum password age \(days\)\:\s+2</value>
+      </pass>
+    </read>
+    <solution>
+        <fix>In Local Security Policy, go to Account Policies, Password Policy, and set the minimum password age equal to 2.</fix>
+        <location>Computer Configuration\Windows Settings\Security Settings\Account Policies\Password Policy</location>
+        <justification>Set Minimum password age to a value of 2 days. Setting the number of days to 0 allows immediate password changes, which is not recommended.</justification>
     </solution>
 </config>
