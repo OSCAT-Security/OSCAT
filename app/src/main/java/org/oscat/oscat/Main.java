@@ -8,11 +8,10 @@ public class Main {
             if (AppConfiguration.IS_VERBOSE_MODE) {
                 System.out.println("No flags specified.  Defaulting to GUI!");
             }
+
             System.out.println("~~ gui is not yet implemented.  exiting... ~~");
             return;
         }
-
-        System.out.println("Hello world!");
 
     }
 
